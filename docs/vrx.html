@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+
+<!-- === Header Starts === -->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <title>Visual Reasoning eXplaination</title>
+
+  <link href="./source/bootstrap.min.css" rel="stylesheet">
+  <link href="./source/font.css" rel="stylesheet" type="text/css">
+  <link href="./source/style.css" rel="stylesheet" type="text/css">
+</head>
+<!-- === Header Ends === -->
+
+
+<body>
+
+
+<!-- === Home Section Starts === -->
+<div class="section">
+  <!-- === Title Starts === -->
+  <div class="header">  
+    <div class="teaser">
+      <a href="#demo"><img src="./source/header.png" style="width: 100%;"></a>
+    </div>
+    <!-- <div class="logo">
+      <a href="http://ilab.usc.edu/" target="_blank"><img src="./source/USC_Seal.jpg"></a> -->
+  </div>
+    <div class="title", style="padding-top: 10pt;">
+      A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts <br>
+    </div>
+  <!-- === Title Ends === -->
+  <div class="author">
+    <a href="https://gyhandy.github.io/" target="_blank">Yunhao Ge</a>,&nbsp;
+    <a href="https://scholar.google.com/citations?hl=en&user=kx_ZMGIAAAAJ" target="_blank">Yao Xiao</a>,
+    <a href="https://scholar.google.com/citations?hl=en&user=ngO9JHUAAAAJ" target="_blank">Zhi Xu</a>,
+    <a href="https://scholar.google.com/citations?user=1D5PfMgAAAAJ&hl=en" target="_blank">Meng Zheng</a>,
+    <a href="https://karanams.github.io/" target="_blank">Srikrishna Karanam</a>,
+    <a href="https://scholar.google.com/citations?user=S2BT6ogAAAAJ&hl=en" target="_blank">Terrence Chen</a>,
+    <a href="https://scholar.google.com/citations?user=xhUvqK8AAAAJ&hl=en" target="_blank">Laurent Itti</a>,
+    <a href="http://wuziyan.com/" target="_blank">Ziyan Wu</a>
+  </div>
+  <div class="institution">
+    United Imaging Intelligence,  University of Southern California
+  </div>
+  <div class="link">
+    <a href="https://arxiv.org/pdf/2105.00290.pdf" target="_blank">[Paper]</a>&nbsp;
+    <a href="https://github.com/gyhandy/Visual-Reasoning-eXplanation" target="_blank">[Code]</a>
+  </div>
+</div>
+<!-- === Home Section Ends === -->
+
+<!-- === Why Section Starts === -->
+<div class="section">
+  <div class="title">Why we want to do this</div>
+  <div class="body">
+
+  </div>
+        We considered the challenging problem of interpreting the decision of a neural network. We propose a novel framework
+  to interpret neural networks which extracts relevant class-specific visual concepts and organizes them using structural
+  concepts graphs based on pairwise concept relationships. By means of knowledge distillation, we show VRX can take a step
+  towards mimicking the reasoning process of NNs and provide logical, concept-level explanations for final model decisions.
+  With extensive experiments, we empirically show VRX can meaningfully answer “why” and “why not” questions about the prediction,
+  providing easy-to-understand insights about the reasoning process. We also show that these insights can potentially provide
+  guidance on improving NN’s performance.
+  <br>
+  <br>
+      Below shows a 5 mins brief introduction of our Visual Reasoning eXplaination Framework <b>VRX</b>.
+
+    <!-- Adjust the frame size based on the demo (EVERY project differs). -->
+    <div style="position: relative; padding-top: 50%; margin: 20pt 0; text-align: center;">
+      <iframe src="https://youtu.be/ZzkpUrK-cRA" frameborder=0
+              style="position: absolute; top: 1%; left: 5%; width: 90%; height: 100%;"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+    </div>
+
+  <div class="teaser">
+
+    <a href="#demo"><img src="source/why.png" style="width: 90%;"></a>
+  </div>
+
+  <br>
+  <br>
+  For existing methods: (1)Pixel-level interpretation can highlight the relevant regions contributing to the decision. 
+  And (2) Concept level explanations can find the important visual concept for the specific class. 
+  However, they only visualize lower-level correlations between input pixels and prediction – no high-level reasoning (e.g. why class A instead of B)
+
+</div>
+<!-- === Why Section Ends === -->
+
+<!-- === Done Section Starts === -->
+<div class="section">
+  <div class="title">What we have done</div>
+  <div class="body">
+
+  </div>
+  <div class="teaser">
+    <a href="#demo"><img src="source/done.png" style="width: 90%;"></a>
+  </div>
+  Our Visual reasoning explanation takes a step towards mimicking the reasoning process of NNs. 
+  <br>
+  <br>
+  Here we explain this model decision by answer the question: why it is a fire engine? 
+  Why not others? We use the Structural Concept Graph, where nodes represent the visual concepts, edges represent relationships between concepts. 
+  <br>
+  <br>
+  To explain the logic for reasoning, colors of graph nodes and edges represent the positive or negative contribution to the final decision.
+  Why it is a fire engine? first: all detected 4 fire engine concepts have positive contribution to the fire engine decision, and second: all concept relationships also have positive contribution.
+  That means both visual concepts and concept relationships look like a fire engine. Why not a school bus? First, the detected concepts, especially concept 1 and 2 and concept relationship have negative contribution to deny the school bus prediction.
+  we provide logical concept-level explanations.
+
+</div>
+<!-- === Done Section Ends === -->
+
+<!-- === Method Section Starts === -->
+<div class="section">
+  <div class="title">Method</div>
+  <div class="body">
+
+  </div>
+  <div class="teaser">
+    <a href="#demo"><img src="source/method-1.png" style="width: 90%;"></a>
+  </div>
+  The first step of our method is to extract the class-specific visual concepts.
+  For instance, to extract jeep concepts, we use Grad-CAM attention map as a filter to mask out the unimportant region for decision and then use an unsupervised method to get the important visual concepts for jeep.
+  Specifically, adding Grad cam filter can help the extracted concept stay in the foreground which follows causal inference With a detected visual concept, VRX can represent the image as a structural concept graph.
+  <div class="teaser">
+    <a href="#demo"><img src="source/method-2.png" style="width: 90%;"></a>
+  </div>
+  To explain the reasoning process with Structural concept graph, we propose a GNN-based graph reasoning network to mimic the decision of the original NN with knowledge transfer and distillation.
+  <br>
+  <br>
+  GRN first build structural concept graph for each potential class, then helps optimize the underlying structural relationships between concepts that are important for the original model’s decision. After knowledge transfer, GRN becomes a representation of the original neural network.
+  <br>
+  <br>
+  During Inference, we propose Gradient-based back-tracking to assign contribution score to each node and edge which means how much contribution does this node or edge help for the final decision. This provide a clear evidence to show the reasoning logic of original model.
+</div>
+<!-- === Method Section Ends === -->
+
+<!-- === Experiment Section Starts === -->
+<div class="section">
+  <div class="title">Experiment</div>
+  <div class="body">
+
+  </div>
+  <div class="teaser">
+    <a href="#demo"><img src="source/experiment-1.png" style="width: 90%;"></a>
+  </div>
+  The first experiment is to verify that the explanation of VRX is logically consistent with the original NN.
+  When Xception wrongly predicts a fire engine as an ambulance.
+  VRX can explain the error: it is because the detected fire engine concepts 3 and 4 have negative contribution to correct prediction.
+  To verify the logic consistency. We substitute the bad concept 3 with a good one from another fire engine image and use Xception to re-predict the class of the modified image,
+  it corrects the error and predicts correctly.  However, if we substitute concept 3 with random patches or substitute the good concept 1 and 2,
+  Xception can not correct the error, which shows the logic consistency.
+
+  <div class="teaser">
+    <a href="#demo"><img src="source/experiment-2.png" style="width: 90%;"></a>
+  </div>
+  The second experiment shows the Interpretation Sensitivity of Appearance and Structures.
+  We first substitute a relatively good concept patch (with positive contribution score) with a relatively bad concept patch (with negative contribution score),
+  VRX can precisely locate the modification and give a correct explanation.
+  Second, when we move one concept’s location from a reasonable place to an abnormal location (like move wheels to the windshield), VRX can precisely capture the abnormal structure and produce a correct explanation.
+  
+  <div class="teaser">
+    <a href="#demo"><img src="source/experiment-3.png" style="width: 90%;"></a>
+  </div>
+  The third experiment shows the VRX can diagnose the original model and guide an improvement of performance. 
+  <br>
+  <br>
+  When we train a model with a pose bias dataset, All buses in pose 1, all military in pose 2, and all tanks in pose 3.
+  we have bad performance on the unbiased test dataset. VRX use the explanation to diagnose model and find it is the bad concept structure leads to the incorrect prediction,
+  then provide useful suggestion which improves the original model’s performance.
+
+  <div class="teaser">
+    <a href="#demo"><img src="source/experiment-4.png" style="width: 90%;"></a>
+  </div>
+  This experiments shows VRX diagnose an Xception model and categorize 3 main types of errors. Based on explanation, 95% of errors have been correctly explained and automatically corrected by VRX.
+</div>
+
+
+
+
+
+<!-- === Experiment Section Ends === -->
+
+<!-- === Reference Section Starts ===-->
+<div class="section">
+  <div class="bibtex">BibTeX</div>
+<pre>
+
+@inproceedings{ge2021peek,
+  title={A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts},
+  author={Ge, Yunhao and Xiao, Yao and Xu, Zhi and Zheng, Meng and Karanam, Srikrishna and Chen, Terrence and Itti, Laurent and Wu, Ziyan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={2195--2204},
+  year={2021}
+}
+</pre>
+
+  <!-- <div class="ref">Related Work</div>
+
+<table id="tbPublications" width="100%">
+    <tr>
+		<td width="306">
+		<img src="source/GSL.png" width="285px" style="box-shadow: 4px 4px 8px #888">
+		</td>
+		<td> Zero-shot Synthesis with Group-Supervised Learning <br>
+		<b>Yunhao Ge</b>, Sami Abu-El-Haija, Gan Xin and Laurent Itti  <br>
+		<em>arXiv:2009.06586</em>, 2020.
+		<p></p>
+		<p>[<a href="https://openreview.net/pdf?id=8wqCDnBmnrT" target="_blank">Paper</a>]
+			[<a href="https://github.com/gyhandy/Group-Supervised-Learning" target="_blank">Code</a>]
+          [<a href="http://sami.haija.org/iclr21gsl" target="_blank">Webpage</a>]
+          [<a href="https://youtu.be/_Mdf6rmmwR4" target="_blank">Talk Video</a>]
+			[<a href="http://ilab.usc.edu/datasets/fonts" target="_blank">Fonts Dataset</a>]
+		</td>
+	</tr>
+</table> -->
+
+  </div>
+<!-- === Reference Section Ends === -->
+<table id="tbPublications" width="10%" align="center">
+<script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=iVKPDWDnWpH3Z9yqkDXAo7oHy06B_95sm_vMZRV5j24&cl=ffffff&w=a"></script>
+</table>
+  <p align="center"><font color="#999999">Last update: June. 23, 2021</font></p>
+
+</body>
+</html>
