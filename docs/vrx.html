@@ -46,7 +46,7 @@
     United Imaging Intelligence,  University of Southern California
   </div>
   <div class="link">
-    <a href="https://arxiv.org/pdf/2105.00290.pdf" target="_blank">[Paper]</a>&nbsp;
+    <a href="https://openaccess.thecvf.com/content/CVPR2021/papers/Ge_A_Peek_Into_the_Reasoning_of_Neural_Networks_Interpreting_With_CVPR_2021_paper.pdf" target="_blank">[Paper]</a>&nbsp;
     <a href="https://github.com/gyhandy/Visual-Reasoning-eXplanation" target="_blank">[Code]</a>
   </div>
 </div>
@@ -54,14 +54,11 @@
 
 <!-- === Why Section Starts === -->
 <div class="section">
-  <div class="title">Why we want to do this</div>
-  <div class="body">
 
-  </div>
-        We considered the challenging problem of interpreting the decision of a neural network. We propose a novel framework
+        We considered the challenging problem of <b>interpreting the reasoning logic of a neural network decision</b>. We propose a novel framework
   to interpret neural networks which extracts relevant class-specific visual concepts and organizes them using structural
-  concepts graphs based on pairwise concept relationships. By means of knowledge distillation, we show VRX can take a step
-  towards mimicking the reasoning process of NNs and provide logical, concept-level explanations for final model decisions.
+  concepts graphs based on pairwise concept relationships. By means of knowledge distillation, we show <b> VRX can take a step
+  towards mimicking the reasoning process of NNs and provide logical, concept-level explanations for final model decisions.</b>
   With extensive experiments, we empirically show VRX can meaningfully answer “why” and “why not” questions about the prediction,
   providing easy-to-understand insights about the reasoning process. We also show that these insights can potentially provide
   guidance on improving NN’s performance.
@@ -74,7 +71,10 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZzkpUrK-cRA" title="YouTube video player" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
+  <div class="title">Why we want to do this</div>
+  <div class="body">
 
+  </div>
   <div class="teaser">
 
     <a href="#demo"><img src="source/why.png" style="width: 90%;"></a>
@@ -115,7 +115,7 @@
 
 <!-- === Method Section Starts === -->
 <div class="section">
-  <div class="title">Method</div>
+  <div class="title">Methods</div>
   <div class="body">
 
   </div>
@@ -140,7 +140,7 @@
 
 <!-- === Experiment Section Starts === -->
 <div class="section">
-  <div class="title">Experiment</div>
+  <div class="title">Experiments</div>
   <div class="body">
 
   </div>
@@ -176,6 +176,14 @@
     <a href="#demo"><img src="source/experiment-4.png" style="width: 90%;"></a>
   </div>
   This experiments shows VRX diagnose an Xception model and categorize 3 main types of errors. Based on explanation, 95% of errors have been correctly explained and automatically corrected by VRX.
+    <br>
+  <br>
+   Our experiments showed that the VRX can visualize the reasoning process behind neural network’s predictions at the concept level, which is intuitive for human users.
+Furthermore, with the interpretation from VRX, we demonstrated that it can provide diagnostic analysis and insights
+on the neural network, potentially providing guidance on its
+performance improvement. We believe that this is a small
+but important step forward towards better transparency and
+interpretability for deep neural networks.
 </div>
 
 
@@ -186,7 +194,8 @@
 
 <!-- === Reference Section Starts ===-->
 <div class="section">
-  <div class="bibtex">BibTeX</div>
+  <div class="bibtex">Contact / Cite</div>
+  <b>Got Questions?</b> We would love to answer them! Please reach out by email! You may cite us in your research as:
 <pre>
 
 @inproceedings{ge2021peek,
