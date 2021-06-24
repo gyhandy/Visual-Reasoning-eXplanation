@@ -16,5 +16,5 @@
 We considered the challenging problem of interpreting the reasoning logic of a neural network decision. We propose a novel framework to interpret neural networks which extracts relevant class-specific visual concepts and organizes them using structural concepts graphs based on pairwise concept relationships. By means of knowledge distillation, we show VRX can take a step towards mimicking the reasoning process of NNs and provide logical, concept-level explanations for final model decisions. With extensive experiments, we empirically show VRX can meaningfully answer “why” and “why not” questions about the prediction, providing easy-to-understand insights about the reasoning process. We also show that these insights can potentially provide guidance on improving NN’s performance.
 
 
-Thanks for the 3rd party implemenation from [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]
+Please see here for a re-implementation from sssufmug [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]
 
