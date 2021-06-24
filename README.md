@@ -7,8 +7,8 @@
 **Figure:** *An example result with the proposed VRX. To explain the prediction (i.e., fire engine and not alternatives like ambulance), VRX provides both visual and structural clues.*
 
 > **A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts** <br>
-> Yunhao Ge, Sami Abu-El-Haija, Gan Xin, Laurent Itti <br>
-> *International Conference on Learning Representations (ICLR), 2021*
+> Yunhao Ge,  Yao Xiao, Zhi Xu, Meng Zheng, Srikrishna Karanam, Terrence Chen, Laurent Itti, Ziyan Wu <br>
+> *IEEE/ CVF International Conference on Computer Vision and Pattern Recognition (CVPR), 2021*
 
 [[Paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Ge_A_Peek_Into_the_Reasoning_of_Neural_Networks_Interpreting_With_CVPR_2021_paper.pdf)]
 [[Project Page](http://ilab.usc.edu/andy/vrx)]
@@ -17,3 +17,4 @@ We considered the challenging problem of interpreting the reasoning logic of a n
 
 
 Thanks for the 3rd party implemenation from [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]
+
