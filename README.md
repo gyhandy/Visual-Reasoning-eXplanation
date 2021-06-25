@@ -7,8 +7,6 @@
     <img src="./docs/Fig-1.png" alt="Editor" width="500">
 </div>
 
-
-
 **Figure:** *An example result with the proposed VRX. To explain the prediction (i.e., fire engine and not alternatives like ambulance), VRX provides both visual and structural clues.*
 
 > **A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts** <br>
@@ -32,7 +30,7 @@ We considered the challenging problem of interpreting the reasoning logic of a n
 **Figure:** *Pipeline for Visual Reasoning Explanation framework.*
 
 
-Please see here for a re-implementation from sssufmug [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]
+Please see here for a re-implementation from sssufmug [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]  
 
 
 **We are actively organizing the code and will publish a full version in few days; please keep an eye on our Github. Thanks! **   
