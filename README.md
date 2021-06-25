@@ -16,20 +16,24 @@
 > *IEEE/ CVF International Conference on Computer Vision and Pattern Recognition (CVPR), 2021*
 
 
+
 We considered the challenging problem of interpreting the reasoning logic of a neural network decision. We propose a novel framework to interpret neural networks which extracts relevant class-specific visual concepts and organizes them using structural concepts graphs based on pairwise concept relationships. By means of knowledge distillation, we show VRX can take a step towards mimicking the reasoning process of NNs and provide logical, concept-level explanations for final model decisions. With extensive experiments, we empirically show VRX can meaningfully answer “why” and “why not” questions about the prediction, providing easy-to-understand insights about the reasoning process. We also show that these insights can potentially provide guidance on improving NN’s performance.
 
 <div align="center">
-    <img src="./docs/Fig-2.png" alt="Editor" width="700">
+    <img src="./docs/Fig-2.png" alt="Editor" width="500">
 </div>
+
 **Figure:** *Examples of representing images as structural concept graph.*
 
 <div align="center">
     <img src="./docs/Fig-3.png" alt="Editor" width="700">
 </div>
+
 **Figure:** *Pipeline for Visual Reasoning Explanation framework.*
 
 
 Please see here for a re-implementation from sssufmug [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]
+
 
 **We are actively organizing the code and will publish a full version in few days; please keep an eye on our Github. Thanks! **   
 
