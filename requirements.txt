@@ -1,0 +1,13 @@
+torch==1.6.0
+torch-geometric==1.7.1
+torch-sparse
+torch-scatter
+Pillow==8.2.0
+MulticoreTSNE==0.1
+matplotlib
+tcav==0.2.1
+tensorflow==1.14.0
+scikit-image==0.16.2
+opencv-python==4.1.1.26
+Keras-Preprocessing==1.1.2
+Keras==2.2.5
