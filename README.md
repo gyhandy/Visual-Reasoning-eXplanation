@@ -32,6 +32,7 @@ We considered the challenging problem of interpreting the reasoning logic of a n
 
 Please see here for a re-implementation from sssufmug [[Code](https://github.com/sssufmug/visual-reasoning-explanation)]  
 
-
 **We will post other relevant resources, implementations, applications and extensions of this work here. Please stay tuned **   
+
+
 
