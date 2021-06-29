@@ -94,7 +94,7 @@ python3 Xception_WhyNot.py --img_class fire_engine --img_idx 19835
 ```
 
 
-### Some visualize results
+## Some visualize results
 <div align="center">
     <img src="./docs/reason_examples/fire_engine_19835.png" alt="Editor" width="900">
 </div>
