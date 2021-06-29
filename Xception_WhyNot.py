@@ -100,7 +100,7 @@ def reasoning(model_share, data_package, device, args):
         reason_dict[class_list[predict-1]]["visual_reason"] = visual_reason
         reason_dict[class_list[predict-1]]["structure_reason"] = structure_reason
 
-        with open(os.path.join(args.result_root, "output", "%s_%s.txt" % (args.img_class, args.img_idx)), 'w') as f:
+        with open(os.path.join(args.result_root, "reason_results", "%s_%s.txt" % (args.img_class, args.img_idx)), 'w') as f:
             f.write('Correct prediction: {}\n'.format(class_list[predict-1]))
             f.write('Why correct? positive node and edge are correct.\n\n')
             f.write('Visual reason:{}\n'.format(visual_reason))
@@ -124,7 +124,7 @@ def reasoning(model_share, data_package, device, args):
                   'Visual reason:{}\n'.format(visual_reason),
                   'structure reason:{}\n'.format(structure_reason))
 
-            with open(os.path.join(args.result_root, "output", "%s_%s.txt" % (args.img_class, args.img_idx)), 'a') as f:
+            with open(os.path.join(args.result_root, "reason_results", "%s_%s.txt" % (args.img_class, args.img_idx)), 'a') as f:
                 f.write('Why not {}? negative node and edge explain.\n'.format(class_list[neg_label-1]))
                 f.write('Visual reason:{}\n'.format(visual_reason))
                 f.write('structure reason:{}\n\n'.format(structure_reason))
@@ -139,7 +139,7 @@ def reasoning(model_share, data_package, device, args):
         reason_dict[class_list[label-1]]["visual_reason"] = visual_reason
         reason_dict[class_list[label-1]]["structure_reason"] = structure_reason
 
-        with open(os.path.join(args.result_root, "output", "%s_%s.txt" % (args.img_class, args.img_idx)), 'w') as f:
+        with open(os.path.join(args.result_root, "reason_results", "%s_%s.txt" % (args.img_class, args.img_idx)), 'w') as f:
             f.write('Wrong prediction: should be {}, wrong predict as {}\n'.format(class_list[label-1],
                                                                           class_list[predict-1]))
             f.write('Why wrong? (1)for the GT class, negative node and edge are bad for GT class.\n\n')
@@ -160,7 +160,7 @@ def reasoning(model_share, data_package, device, args):
         reason_dict[class_list[predict-1]]["visual_reason"] = visual_reason
         reason_dict[class_list[predict-1]]["structure_reason"] = structure_reason
 
-        with open(os.path.join(args.result_root, "output", "%s_%s.txt" % (args.img_class, args.img_idx)), 'a') as f:
+        with open(os.path.join(args.result_root, "reason_results", "%s_%s.txt" % (args.img_class, args.img_idx)), 'a') as f:
             f.write('Why wrong? (2)for the Predicted class, positive node and edge are bad for Predicted class .\n')
             f.write('Visual reason:{}\n'.format(visual_reason))
             f.write('structure reason:{}\n'.format(structure_reason))
@@ -362,46 +362,7 @@ class show_concept():
         return img, concept_images
 
 
-
-def main(args):
-    '''
-    testing dataset may be same as training
-    '''
-
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model_share = MyGCNNet_shareW_adap_batch_withhook(2048, interest_class_num=3)  # all class share base structure
-    '''
-    we will use the trained model
-    '''
-    model_share.load_state_dict(torch.load(args.model_path))
-
-    model_share = model_share.to(device)
-    model_share.batch_size = 1 # fix the batch size
-    ''' load pretrained model'''
-    print('[Pre] 1 Loading class-specific model')
-
-    '''register hook for reasoning'''
-    model_share.fc2.register_forward_hook(hook_fn_forward)
-    model_share.fc2.register_backward_hook(hook_fn_backward)
-
-
-    '''
-    Start reasoning
-    '''
-    class_dict = {
-        'ambulance': 'n02701002',
-        'fire_engine': 'n03345487',
-        'school_bus': 'n04146614'
-    }
-
-    class_list = ['fire_engine', 'ambulance', 'school_bus']
-
-    image_path = os.path.join(args.source_dir, args.img_class, "%s_%s.JPEG"%(class_dict[args.img_class], args.img_idx))
-    graph_path = os.path.join(args.result_root, 'img2vec', args.img_class+'_detect_graph',
-                              '{}_{}_graph.txt'.format(class_dict[args.img_class], args.img_idx))
-    data_package = select_data(graph_path, args.img_class)  # contain both positive and negative graph
-    reason_dict = reasoning(model_share, data_package, device, args)
-
+def visualize_results(image_path, reason_dict, data_package, args, class_list):
     concept_score = []
     edge_score = []
     img = load_image_from_file(image_path, (299,299))
@@ -470,37 +431,72 @@ def main(args):
         fig.add_subplot(ax)
         plt.show()
 
-        with tf.gfile.Open(os.path.join(args.result_root, "output", "%s2%s_%s.png"%(args.img_class, k, args.img_idx)), 'w') as f:
+        with tf.gfile.Open(os.path.join(args.result_root, "reason_results", "%s2%s_%s.png"%(args.img_class, k, args.img_idx)), 'w') as f:
             fig.savefig(f,dpi=600)
 
     fig = plt.figure(figsize=(13, 6.5))
     outer = gridspec.GridSpec(1, 3, wspace=0.00001, hspace=0.00001)
     for idx, (k, v) in enumerate(reason_dict.items()):
         ax = plt.Subplot(fig, outer[idx])
-        img = mpimg.imread(os.path.join(args.result_root, "output", "%s2%s_%s.png"%(args.img_class, k, args.img_idx)))
+        img_path = os.path.join(args.result_root, "reason_results", "%s2%s_%s.png"%(args.img_class, k, args.img_idx))
+        img = mpimg.imread(img_path)
         ax.imshow(img)
         ax.set_xticks([])
         ax.set_yticks([])
         ax.grid(False)
         fig.add_subplot(ax)
         plt.axis('off')
+        os.remove(img_path)
     fig.add_axes([0.87, 0.15, 0.05, 0.7],frameon=False)
     plt.axis('off')
     cb = fig.colorbar(matplotlib.cm.ScalarMappable(cmap="jet"))
     cb.set_ticks([])
     cb.update_ticks()
-    plt.text(0.85, 0.20, s='Positive', fontsize=ball_size)
-    plt.text(0.84, 0.78, s='Negative', fontsize=ball_size)
+    plt.text(0.80, 0.20, s='Positive', fontsize=ball_size)
+    plt.text(0.80, 0.78, s='Negative', fontsize=ball_size)
     plt.show()
-    with tf.gfile.Open(os.path.join(args.result_root, "output", "%s_%s.png" % (args.img_class, args.img_idx)), 'w') as f:
-        fig.savefig(f)
+    with tf.gfile.Open(os.path.join(args.result_root, "reason_results", "%s_%s.png" % (args.img_class, args.img_idx)), 'w') as f:
+        fig.savefig(f, pad_inches = 0, bbox_inches = 'tight')
 
-    print('Finished analyze! You can find the output files at %s' % os.path.join(args.result_root, "output"))
+    print('Finished analyze! You can find the output files at %s' % os.path.join(args.result_root, "reason_results"))
+    return
+
+
+
+def main(args):
+    '''
+    testing dataset may be same as training
+    '''
+    os.makedirs(os.path.join(args.result_root, "reason_results"), exist_ok=True)
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    model_share = MyGCNNet_shareW_adap_batch_withhook(2048, interest_class_num=3)  # all class share base structure
+    '''
+    we will use the trained model
+    '''
+    model_share.load_state_dict(torch.load(args.model_path))
+
+    model_share = model_share.to(device)
+    model_share.batch_size = 1 # fix the batch size
+    ''' load pretrained model'''
+    print('[Pre] 1 Loading class-specific model')
+
+    '''register hook for reasoning'''
+    model_share.fc2.register_forward_hook(hook_fn_forward)
+    model_share.fc2.register_backward_hook(hook_fn_backward)
+
+    '''Start reasoning'''
+    image_path = os.path.join(args.source_dir, args.img_class, "%s_%s.JPEG"%(class_dict[args.img_class], args.img_idx))
+    graph_path = os.path.join(args.result_root, 'img2vec', args.img_class+'_detect_graph',
+                              '{}_{}_graph.txt'.format(class_dict[args.img_class], args.img_idx))
+    data_package = select_data(graph_path, args.img_class)  # contain both positive and negative graph
+    reason_dict = reasoning(model_share, data_package, device, args)
+    visualize_results(image_path, reason_dict, data_package, args, class_list)
 
 
 def parse_arguments(argv):
   parser = argparse.ArgumentParser()
-  parser.add_argument('--source_dir', type=str, default='/lab/tmpig23b/u/andy/VR_SC/ACEdata/source',
+  parser.add_argument('--source_dir', type=str, default='source',
       help='''Directory where the network's classes image folders and random concept folders are saved.''')
   parser.add_argument('--result_root', type=str, help='directory to results of discover concept.py.',
                       default='result')
@@ -515,4 +511,12 @@ def parse_arguments(argv):
 if __name__ == '__main__':
     total_grad_out = []
     total_activation_out = []
+
+    class_dict = {
+        'ambulance': 'n02701002',
+        'fire_engine': 'n03345487',
+        'school_bus': 'n04146614'
+    }
+    class_list = ['fire_engine', 'ambulance', 'school_bus']
+
     main(parse_arguments(sys.argv[1:]))
