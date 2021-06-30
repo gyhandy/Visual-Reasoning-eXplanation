@@ -29,6 +29,9 @@ We considered the challenging problem of interpreting the reasoning logic of a n
 
 **Figure:** *Pipeline for Visual Reasoning Explanation framework.*
 
+Thanks for a re-implementation from [sssufmug](https://github.com/sssufmug/visual-reasoning-explanation), we added more features and finish the whole pipeline.
+
+
 ## Getting Started
 
 ### Installation
@@ -44,8 +47,6 @@ cd Visual-Reasoning-eXplanation
 pip install -r requirements.txt
 ```
 <br>
-
-
 
 ### Datasets
 - We use a subset of ImageNet as our source data. There are intrested classes which want to do reasoning, such as fire angine, ambulance and school bus, and also other random images for discovering concepts. You can download the source data that we used in our paper here: [source](http://ilab.usc.edu/andy/dataset/source.zip) [http://ilab.usc.edu/andy/dataset/source.zip]
