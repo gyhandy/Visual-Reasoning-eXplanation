@@ -134,7 +134,7 @@ def main(args):
 def parse_arguments(argv):
   """Parses the arguments passed to the run.py script."""
   parser = argparse.ArgumentParser()
-  parser.add_argument('--source_dir', type=str, default='/lab/tmpig23b/u/andy/VR_SC/ACEdata/source',
+  parser.add_argument('--source_dir', type=str, default='source',
       help='''Directory where the network's classes image folders and random concept folders are saved.''')
   parser.add_argument('--working_dir', type=str,
       help='Directory to save the results.', default='result')
