@@ -5,11 +5,14 @@ ConceptDiscovery class that is able to discover the concepts belonging to one
 of the possible ResNet_pytorch labels of the ResNet_pytorch task of a network
 and calculate each concept's TCAV score..
 """
+import os,sys,inspect
 import scipy.stats as stats
 import skimage.segmentation as segmentation
 import sklearn.cluster as cluster
 import sklearn.metrics.pairwise as metrics
 from tcav import cav
+curdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+sys.path.insert(0,curdir)
 from ace_helpers import *
 
 
@@ -205,12 +208,13 @@ class ConceptDiscovery(object):
     if param_dict is None:
       param_dict = {}
 
+    upsample_size = (img.shape[1], img.shape[0])
     gradCAM = self.model.gradCAM_model
     chosen_class = int(self.model.labels[self.target_class]) #####
-    input = self.model.preprocess_single_img(img)
-    # ori_img = (img * 255).astype(np.uint8)
-    # gradCAM.showCAMs(ori_img, input, chosen_class, keep_percent)
-    cam = gradCAM.compute_heatmap(input, chosen_class, keep_percent)[1][:,:,0]
+    inputs = np.expand_dims(img, axis=0)
+    # ori_img = (img * 256).astype(np.uint8)
+    # gradCAM.showCAMs(ori_img, inputs, chosen_class, upsample_size)
+    cam = gradCAM.compute_heatmap(inputs, chosen_class, upsample_size, keep_percent)[1][:,:,0]
 
     if method == 'slic':
       n_segmentss = param_dict.pop('n_segments', [15, 50, 80])

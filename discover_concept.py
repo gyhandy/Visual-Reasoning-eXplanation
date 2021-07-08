@@ -1,7 +1,6 @@
 """This script runs the whole ACE method.
 for each class, extract the concept and store them in corresponding folder
 """
-
 import sys
 import os
 
@@ -135,7 +134,7 @@ def main(args):
 def parse_arguments(argv):
   """Parses the arguments passed to the run.py script."""
   parser = argparse.ArgumentParser()
-  parser.add_argument('--source_dir', type=str, default='source',
+  parser.add_argument('--source_dir', type=str, default='/lab/tmpig23b/u/andy/VR_SC/ACEdata/source',
       help='''Directory where the network's classes image folders and random concept folders are saved.''')
   parser.add_argument('--working_dir', type=str,
       help='Directory to save the results.', default='result')
