@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 ### Datasets Preprocess
 
-Unzip source.zip as well as result.zip, and then place them in `./source` and `./result`
+Unzip source.zip as well as result.zip, and then place them in `./source` and `./result`. If you only want to do inference, you can skip `discover concept`, `match concept` and `training Structural Concept Graph (SCG)`.
 
 ### Discover concept
 For more information about discover concept, you can refer to [ACE: Towards Automatic Concept Based Explanations](https://github.com/amiratag/ACE?utm_source=catalyzex.com).
