@@ -6,12 +6,13 @@
 ## Citation
 If you use this code for your research, please cite the following paper.
 ```
-@inproceedings{ge2021peek,
-  title={A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts},
-  author={Ge, Yunhao and Xiao, Yao and Xu, Zhi and Zheng, Meng and Karanam, Srikrishna and Chen, Terrence and Itti, Laurent and Wu, Ziyan},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={2195--2204},
-  year={2021}
+@misc{ge2021peek,
+      title={A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts}, 
+      author={Yunhao Ge and Yao Xiao and Zhi Xu and Meng Zheng and Srikrishna Karanam and Terrence Chen and Laurent Itti and Ziyan Wu},
+      year={2021},
+      eprint={2105.00290},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
 }
 ```
 
