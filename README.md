@@ -3,18 +3,6 @@
 [CVPR 2021 A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts] 
 
 
-## Citation
-If you use this code for your research, please cite the following paper.
-```
-@misc{ge2021peek,
-      title={A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts}, 
-      author={Yunhao Ge and Yao Xiao and Zhi Xu and Meng Zheng and Srikrishna Karanam and Terrence Chen and Laurent Itti and Ziyan Wu},
-      year={2021},
-      eprint={2105.00290},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}
-```
 
 ### [Project Page](http://ilab.usc.edu/andy/vrx) | [Video](https://youtu.be/ZzkpUrK-cRA) | [Paper](https://openaccess.thecvf.com/content/CVPR2021/papers/Ge_A_Peek_Into_the_Reasoning_of_Neural_Networks_Interpreting_With_CVPR_2021_paper.pdf)
 <div align="center">
@@ -122,6 +110,17 @@ python3 Xception_WhyNot.py --img_class fire_engine --img_idx 19835
     <img src="./docs/reason_examples/school_bus_1165.png" alt="Editor" width="900">
 </div>
 
+## Contact / Cite
+Got Questions? We would love to answer them! Please reach out by email! You may cite us in your research as:
+```
+@inproceedings{ge2021peek,
+  title={A Peek Into the Reasoning of Neural Networks: Interpreting with Structural Visual Concepts},
+  author={Ge, Yunhao and Xiao, Yao and Xu, Zhi and Zheng, Meng and Karanam, Srikrishna and Chen, Terrence and Itti, Laurent and Wu, Ziyan},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={2195--2204},
+  year={2021}
+}
+```
 
 
 <b>We will post other relevant resources, implementations, applications and extensions of this work here. Please stay tuned</b>
